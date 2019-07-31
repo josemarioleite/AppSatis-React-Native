@@ -1,0 +1,92 @@
+import React, {Component} from 'react'
+import {modules} from '../../words'
+import { StatusBar ,View, Image, ImageBackground, TouchableHighlight, Text} from 'react-native'
+import Style from '../styles/Pattern'
+
+export default class Questions extends Component {                
+
+    render() {
+
+        var answers = [
+            resp1 = modules.responses.resp1,
+            resp2 = modules.responses.resp2,
+            resp3 = modules.responses.resp3,
+            resp4 = modules.responses.resp4,
+            resp5 = modules.responses.resp5
+        ]    
+    
+        var options = {
+            terrible: modules.resps.terrible,
+            bad: modules.resps.bad,
+            regular: modules.resps.regular,
+            good: modules.resps.good,
+            great: modules.resps.great
+        }
+
+        return (
+            <View style={Style.container}>
+            <StatusBar hidden={true} />
+                <ImageBackground source={require('../assets/fundo.png')} style={Style.ImageBackground}>                                        
+                    <View style={Style.borderQst}>
+                        <Text  style={Style.question}>{this.props.qst}</Text>
+                        <View style={Style.center}>
+                            <View style={Style.viewCent}>
+    
+                            <TouchableHighlight underlayColor='transparent'
+                                                onPressOut={() => answers[0]}                           
+                                                onPress={this.props.next}
+                                                >
+                                    <Image style={Style.circle} 
+                                           source={require('../assets/pessimo.png')}>
+                                    </Image>
+                            </TouchableHighlight>
+                            <Text style={Style.vote}>{options.terrible}</Text>
+                            </View>
+                            
+                            <View style={Style.viewCent}>
+                                <TouchableHighlight underlayColor='transparent' 
+                                                    onPressOut={this.props.next}                                                 
+                                                    // onPress={this.resPer.res2}>
+                                                    >
+                                    <Image style={Style.circle} source={require('../assets/ruim.png')} />
+                                </TouchableHighlight>
+                                    <Text style={Style.vote}>{options.bad}</Text>
+                            </View>
+    
+                            <View style={Style.viewCent}>
+                                <TouchableHighlight underlayColor='transparent' 
+                                                    onPressOut={this.props.next}                                                 
+                                                    // onPress={this.resPer.res3}>
+                                                    >
+                                    <Image style={Style.circle} source={require('../assets/regular.png')} />
+                                </TouchableHighlight>
+                                    <Text style={Style.vote}>{options.regular}</Text>
+                            </View>
+    
+                            <View style={Style.viewCent}>
+                                <TouchableHighlight underlayColor='transparent' 
+                                                    onPressOut={this.props.next}                                                 
+                                                    // onPress={this.resPer.res4}>
+                                                    >
+                                    <Image style={Style.circle} source={require('../assets/bom.png')} />
+                                </TouchableHighlight>
+                                    <Text style={Style.vote}>{options.good}</Text>
+                            </View>
+    
+                            <View style={Style.viewCent}>
+                                <TouchableHighlight underlayColor='transparent'
+                                                    onPressOut={this.props.next}                                                 
+                                                    // onPress={this.resPer.res5}>
+                                                    >
+                                    <Image style={Style.circle} source={require('../assets/otimo.png')} />
+                                </TouchableHighlight>
+                                    <Text style={Style.vote}>{options.great}</Text>
+                            </View>
+                        </View>                
+                    </View>
+                    <Image style={Style.mini} source={require('../assets/mini.png')} />
+                    <Text style={Style.pages}>{this.props.pages}</Text>
+                </ImageBackground>
+            </View>
+    )}
+}
